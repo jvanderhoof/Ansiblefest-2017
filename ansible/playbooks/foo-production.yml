@@ -1,0 +1,21 @@
+- hosts: foo-production
+  roles:
+    - role: ansible-role-conjur
+      conjur_account: cucumber
+      conjur_appliance_url: "http://conjur:3000"
+      conjur_host_factory_token: "{{lookup('env', 'PRODUCTION_HFTOKEN')}}"
+      conjur_host_name: "conjur_{{ ansible_hostname }}"
+
+  tasks:
+    - name: Retrieve secrets with target identity
+      retrieve_conjur_variable:
+        variables:
+          DB_USERNAME: foo/production/database/username
+          DB_PASSWORD: foo/production/database/password
+          STRIPE_PRIVATE_KEY: foo/production/stripe/private_key
+      register: result
+
+    - name: Do something with the secret {{result.secrets['DB_USERNAME']}}
+      shell: env
+
+    - debug: var=result

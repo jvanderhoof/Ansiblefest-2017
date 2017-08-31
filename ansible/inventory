@@ -1,0 +1,9 @@
+[foo-staging]
+ansiblefest_foo_staging_1 ansible_connection=docker
+ansiblefest_foo_staging_2 ansible_connection=docker
+
+[foo-production]
+ansiblefest_foo_production_1 ansible_connection=docker
+ansiblefest_foo_production_2 ansible_connection=docker
+ansiblefest_foo_production_3 ansible_connection=docker
+ansiblefest_foo_production_4 ansible_connection=docker
