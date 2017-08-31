@@ -7,15 +7,18 @@
       conjur_host_name: "conjur_{{ ansible_hostname }}"
 
   tasks:
-    - name: Retrieve secrets with target identity
-      retrieve_conjur_variable:
+    - name: Find current running Application process
+      shell: pgrep ruby || true
+      register: current_application_process
+
+    - name: Stop application server (if running)
+      shell: kill -9 {{current_application_process.stdout}}
+      when: current_application_process.stdout != ''
+
+    - name: Start application with secrets from Conjur
+      conjur:
         variables:
           DB_USERNAME: foo/staging/database/username
           DB_PASSWORD: foo/staging/database/password
-          STRIPE_PRIVATE_KEY: foo/staging/stripe/private_key
-      register: result
-
-    - name: Do something with the secret {{result.secrets['DB_USERNAME']}}
-      shell: env
-
-    - debug: var=result
+          STRIPE_API_KEY: foo/staging/stripe/private_key
+        command: rackup -p 4567 --host 0.0.0.0 -D
