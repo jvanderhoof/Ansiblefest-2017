@@ -56,6 +56,41 @@ To perform the above steps on the production environment:
 $ ./4_deploy_production.sh
 ```
 
+#### Scaling Production Nodes
+
+To demonstrate the simplicity of scaling up using Host Factory tokens, scale production nodes from 4 to 20:
+
+```sh
+$ ./5_scale.sh
+```
+
+Next, uncomment lines 10-25 in the `ansible/inventory` file. Then, re-run the production configuration:
+
+```sh
+$ ./4_deploy_production.sh
+```
+
+#### View Application Containers
+
+Docker Compose handles the port mapping, binding each container to localhost. To pull the app on a browser, you'll need to pass the docker-compose assigned port.  You can get this port by viewing the running containers:
+
+```sh
+$ docker ps
+CONTAINER ID        IMAGE                        COMMAND                  CREATED             STATUS              PORTS                            NAMES
+37881ae9a161        ansiblefest_foo_production   "sleep infinity"         35 minutes ago      Up 35 minutes       0.0.0.0:32833->4567/tcp          ansiblefest_foo_production_4
+f666344b3335        ansiblefest_foo_production   "sleep infinity"         35 minutes ago      Up 35 minutes       0.0.0.0:32832->4567/tcp          ansiblefest_foo_production_2
+281feaaf7801        ansiblefest_foo_production   "sleep infinity"         35 minutes ago      Up 35 minutes       0.0.0.0:32831->4567/tcp          ansiblefest_foo_production_3
+28491d3b7004        ansiblefest_foo_staging      "sleep infinity"         35 minutes ago      Up 35 minutes       0.0.0.0:32830->4567/tcp          ansiblefest_foo_staging_2
+bc56fd64848e        cyberark/conjur              "conjurctl server ..."   35 minutes ago      Up 35 minutes       80/tcp, 0.0.0.0:3000->3000/tcp   ansiblefest_conjur_1
+1745b25df6a0        postgres:9.3                 "docker-entrypoint..."   35 minutes ago      Up 35 minutes       5432/tcp                         ansiblefest_pg_1
+cd22a04ed277        ansiblefest_foo_production   "sleep infinity"         35 minutes ago      Up 35 minutes       0.0.0.0:32829->4567/tcp          ansiblefest_foo_production_1
+08136c4ea9e5        ansiblefest_foo_staging      "sleep infinity"         35 minutes ago      Up 35 minutes       0.0.0.0:32828->4567/tcp          ansiblefest_foo_staging_1
+```
+
+For the above example, the first container (`37881ae9a161`), can be viewed on port `32833`: `0.0.0.0:32833->4567/tcp`. This container is accessible via:
+
+http://localhost:32833
+
 #### Shutting it Down
 
 To stop and cleanup all running containers (this will destroy all data):
