@@ -29,20 +29,18 @@ services:
       - conjur
 
   foo_staging:
-    image: jvanderhoof/ansiblefest:latest
+    build: ./test_app
     entrypoint: sleep
     command: infinity
-    # command: rackup -p 4567 --host 0.0.0.0
     ports:
       - 4567
     environment:
       RACK_ENV: staging
 
   foo_production:
-    image: jvanderhoof/ansiblefest:latest
+    build: ./test_app
     entrypoint: sleep
     command: infinity
-    # command: rackup -p 4567 --host 0.0.0.0
     ports:
       - 4567
     environment:
