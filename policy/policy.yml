@@ -111,6 +111,6 @@
         - !layer staging
 
     - !grant
-      role: !group uses_staging_variables
+      role: !group uses_production_variables
       members:
         - !layer production
