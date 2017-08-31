@@ -39,7 +39,22 @@ $ ./2_set_secrets.sh
 
 #### Ansible
 
-Coming Soon
+There are two scripts: `3_deploy_staging.sh` and `4_deploy_production.sh`, which do the following:
+
+1. Generate a Host Factory token for that particular environment
+2. Use the `ansible-role-conjur` Role to provide identity to the remote instances, and add them to the correct group based on the provided Host Factory token.
+3. Retrieve secrets using the identity of that machine.
+
+To perform the above steps on the staging environment:
+```sh
+$ ./3_deploy_staging.sh
+```
+
+
+To perform the above steps on the production environment:
+```sh
+$ ./4_deploy_production.sh
+```
 
 #### Shutting it Down
 
