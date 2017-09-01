@@ -1,4 +1,4 @@
-- hosts: foo-production
+- hosts: myapp-production
   roles:
     - role: ansible-role-conjur
       conjur_account: cucumber

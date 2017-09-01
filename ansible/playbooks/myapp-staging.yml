@@ -1,4 +1,4 @@
-- hosts: foo-staging
+- hosts: myapp-staging
   roles:
     - role: ansible-role-conjur
       conjur_account: cucumber

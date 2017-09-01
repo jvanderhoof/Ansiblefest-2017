@@ -1,25 +1,5 @@
-[foo-staging]
-ansiblefest_foo_staging_1 ansible_connection=docker
-ansiblefest_foo_staging_2 ansible_connection=docker
+[myapp-staging]
+ansiblefest_myapp_staging_[1:2] ansible_connection=docker
 
-[foo-production]
-ansiblefest_foo_production_1 ansible_connection=docker
-ansiblefest_foo_production_2 ansible_connection=docker
-ansiblefest_foo_production_3 ansible_connection=docker
-ansiblefest_foo_production_4 ansible_connection=docker
-# ansiblefest_foo_production_5 ansible_connection=docker
-# ansiblefest_foo_production_6 ansible_connection=docker
-# ansiblefest_foo_production_7 ansible_connection=docker
-# ansiblefest_foo_production_8 ansible_connection=docker
-# ansiblefest_foo_production_9 ansible_connection=docker
-# ansiblefest_foo_production_10 ansible_connection=docker
-# ansiblefest_foo_production_11 ansible_connection=docker
-# ansiblefest_foo_production_12 ansible_connection=docker
-# ansiblefest_foo_production_13 ansible_connection=docker
-# ansiblefest_foo_production_14 ansible_connection=docker
-# ansiblefest_foo_production_15 ansible_connection=docker
-# ansiblefest_foo_production_16 ansible_connection=docker
-# ansiblefest_foo_production_17 ansible_connection=docker
-# ansiblefest_foo_production_18 ansible_connection=docker
-# ansiblefest_foo_production_19 ansible_connection=docker
-# ansiblefest_foo_production_20 ansible_connection=docker
+[myapp-production]
+ansiblefest_myapp_production_[1:4] ansible_connection=docker

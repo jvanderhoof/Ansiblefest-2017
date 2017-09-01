@@ -1,4 +1,4 @@
 - src: https://github.com/cyberark/ansible-role-conjur
   scm: git
-  name: conjur
+  name: ansible-role-conjur
   version: ansiblefest
