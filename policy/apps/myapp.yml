@@ -20,11 +20,6 @@
 
   - !host-factory
     layer: [ !layer ]
-    # id: staging
-    # annotations:
-    #   description: Host Factory for Jenkins master hosts
-    # layer: [ *staging-layer ]
-
 
   - !group secrets-users
   - !group secrets-managers

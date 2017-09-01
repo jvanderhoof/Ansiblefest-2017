@@ -20,10 +20,3 @@ docker-compose run --rm -e CONJUR_AUTHN_API_KEY=$api_key cli \
 
 docker-compose run --rm -e CONJUR_AUTHN_API_KEY=$api_key cli \
   policy load root /src/policy/apps/myapp_grants.yml
-
-
-# -docker-compose run --rm -e CONJUR_AUTHN_API_KEY=$api_key cli policy load --replace root /src/policy/policy.yml
-# docker-compose run --rm -e CONJUR_AUTHN_API_KEY=$api_key cli policy load --replace root policy.yml
-#
-# root /src/policy/policy.yml
-# docker-compose run --rm -e CONJUR_AUTHN_API_KEY=$api_key cli policy load root /src/policy/groups_and_users.yml

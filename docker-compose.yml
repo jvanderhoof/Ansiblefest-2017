@@ -17,7 +17,7 @@ services:
     links:
       - pg
 
-  cli:
+  conjur_cli:
     image: conjurinc/cli5
     environment:
       CONJUR_APPLIANCE_URL: http://conjur:3000
@@ -28,7 +28,7 @@ services:
     links:
       - conjur
 
-  foo_staging:
+  myapp_staging:
     build: ./test_app
     entrypoint: sleep
     command: infinity
@@ -37,7 +37,7 @@ services:
     environment:
       RACK_ENV: staging
 
-  foo_production:
+  myapp_production:
     build: ./test_app
     entrypoint: sleep
     command: infinity
