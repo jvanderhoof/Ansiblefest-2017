@@ -18,8 +18,10 @@ To begin, clone this repository and step into the folder.
 To begin, fire up the cluster, which includes Conjur, Postgres, CLI, 2 Staging Containers, and 4 production servers:
 
 ```sh
-$ ./start.sh
+$ ./demo.sh
 ```
+
+To exit, `ctr-c`
 
 #### Load Policy
 
@@ -90,11 +92,3 @@ cd22a04ed277        ansiblefest_foo_production   "sleep infinity"         35 min
 For the above example, the first container (`37881ae9a161`), can be viewed on port `32833`: `0.0.0.0:32833->4567/tcp`. This container is accessible via:
 
 http://localhost:32833
-
-#### Shutting it Down
-
-To stop and cleanup all running containers (this will destroy all data):
-
-```sh
-$ ./stop.sh
-```
