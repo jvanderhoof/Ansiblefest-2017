@@ -1,9 +1,9 @@
-- hosts: foo-staging
+- hosts: foo-production
   roles:
     - role: ansible-role-conjur
       conjur_account: cucumber
       conjur_appliance_url: "http://conjur:3000"
-      conjur_host_factory_token: "{{lookup('env', 'STAGING_HFTOKEN')}}"
+      conjur_host_factory_token: "{{lookup('env', 'PRODUCTION_HFTOKEN')}}"
       conjur_host_name: "conjur_{{ ansible_hostname }}"
 
   tasks:
@@ -18,7 +18,7 @@
     - name: Start application with secrets from Conjur
       conjur:
         variables:
-          DB_USERNAME: foo/staging/database/username
-          DB_PASSWORD: foo/staging/database/password
-          STRIPE_API_KEY: foo/staging/stripe/private_key
+          DB_USERNAME: production/myapp/database/username
+          DB_PASSWORD: production/myapp/database/password
+          STRIPE_API_KEY: production/myapp/stripe/private_key
         command: rackup -p 4567 --host 0.0.0.0 -D

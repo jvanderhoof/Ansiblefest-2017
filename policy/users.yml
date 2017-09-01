@@ -1,9 +1,17 @@
-# - !policy
-#   id: groups
-#   body:
-- !group developers
+- !group security_ops
+
 - !group team_leads
-- !group ops
+
+- !group developers
+
+# Grant the less-powerful groups to the more-powerful groups
+- !grant
+  role: !group developers
+  member: !group team_leads
+
+- !grant
+  role: !group team_leads
+  member: !group security_ops
 
 - !user
   id: jason.vanderhoof
@@ -50,10 +58,8 @@
 - !grant
   role: !group developers
   members:
-    - !user jason.vanderhoof
     - !user marcel.calisto
     - !user ernest.alvin
-    - !user victoria.nandita
     - !user sophie.madelon
 
 - !grant
@@ -63,22 +69,6 @@
     - !user victoria.nandita
 
 - !grant
-  role: !group ops
+  role: !group security_ops
   members:
     - !user terrance.blake
-
-
-- !grant
-  role: !group foo/security_ops
-  members:
-    - !group ops
-
-- !grant
-  role: !group foo/team_leads
-  members:
-    - !group team_leads
-
-- !grant
-  role: !group foo/developers
-  members:
-    - !group developers
