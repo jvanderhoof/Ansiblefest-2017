@@ -41,21 +41,25 @@ $ ./2_set_secrets.sh
 
 #### Ansible
 
-There are two scripts: `3_deploy_staging.sh` and `4_deploy_production.sh`, which do the following:
+There is a single `deploy.sh` file responsible for deploying to the Staging or Production environment.
+
+This script does the following:
 
 1. Generate a Host Factory token for that particular environment
-2. Use the `ansible-role-conjur` Role to provide identity to the remote instances, and add them to the correct group based on the provided Host Factory token.
+2. Uses [cyberark/ansible-role-conjur]() role to:
+  * Provide identity to the remote instance
+  * Add them to the correct layer based on the provided Host Factory token.
 3. Retrieve secrets using the identity of that machine.
 
 To perform the above steps on the staging environment:
 ```sh
-$ ./3_deploy_staging.sh
+$ ./deploy.sh staging
 ```
 
 
 To perform the above steps on the production environment:
 ```sh
-$ ./4_deploy_production.sh
+$ ./deploy.sh production
 ```
 
 #### Scaling Production Nodes
@@ -63,13 +67,15 @@ $ ./4_deploy_production.sh
 To demonstrate the simplicity of scaling up using Host Factory tokens, scale production nodes from 4 to 20:
 
 ```sh
-$ ./5_scale.sh
+$ docker-compose scale myapp_production=20
 ```
 
-Next, uncomment lines 10-25 in the `ansible/inventory` file. Then, re-run the production configuration:
+Next, in the `ansible/inventory` file, change the line: `ansiblefest_myapp_production_[1:4]` to `ansiblefest_myapp_production_[1:20]` and save the file.
+
+Then, re-run the production configuration:
 
 ```sh
-$ ./4_deploy_production.sh
+$ ./deploy.sh production
 ```
 
 #### View Application Containers
