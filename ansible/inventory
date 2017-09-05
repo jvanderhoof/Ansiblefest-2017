@@ -1,5 +1,5 @@
 [myapp-staging]
-ansiblefest2017_myapp_staging_[1:2] ansible_connection=docker
+ansiblefest_myapp_staging_[1:2] ansible_connection=docker
 
 [myapp-production]
-ansiblefest2017_myapp_production_[1:4] ansible_connection=docker
+ansiblefest_myapp_production_[1:4] ansible_connection=docker

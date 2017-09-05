@@ -6,11 +6,7 @@ This project includes all the elements required to run the demo.
 The following are required to run this demo
 * Docker 17.03.1
 * Ansible 2.3.2.0 (Installed via Pip)
-
-```sh-session
-$ mkvirtualenv $(basename $PWD)
-$ cd ansible && pip install -r requirements.txt
-```
+* Python 2.7.13
 
 It's been tested on OSX. It should work on other operating systems, but I have not tested it.
 
