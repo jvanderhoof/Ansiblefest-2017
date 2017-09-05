@@ -19,3 +19,8 @@ COPY Gemfile.lock /opt/app/
 RUN bundle install
 
 COPY . /opt/app
+
+EXPOSE 4567
+
+ENTRYPOINT ["/usr/local/bin/bundle", "exec"]
+CMD ["rackup", "-p", "4567", "--host", "0.0.0.0"]

@@ -30,8 +30,6 @@ services:
 
   myapp_staging:
     build: ./test_app
-    entrypoint: sleep
-    command: infinity
     ports:
       - 4567
     environment:
@@ -39,8 +37,6 @@ services:
 
   myapp_production:
     build: ./test_app
-    entrypoint: sleep
-    command: infinity
     ports:
       - 4567
     environment:

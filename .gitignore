@@ -1,2 +1,3 @@
 ansible/playbooks/*.retry
 ansible/roles/*
+ansible/tmp
