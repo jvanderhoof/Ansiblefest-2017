@@ -7,6 +7,7 @@ The following are required to run this demo
 * Docker 17.03.1
 * Ansible 2.3.2.0 (Installed via Pip)
 * Python 2.7.13
+* jq 1.5.2
 
 It's been tested on OSX. It should work on other operating systems, but I have not tested it.
 
