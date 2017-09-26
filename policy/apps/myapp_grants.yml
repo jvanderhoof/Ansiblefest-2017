@@ -2,4 +2,4 @@
 - !grant
   role: !group production/myapp/secrets-managers
   members:
-  - !group team_leads
+  - !group sec_ops
