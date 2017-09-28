@@ -5,7 +5,7 @@ cd ansible
 env=$1
 
 if [ "$env" = "staging" ] || [ "$env" = "production" ]; then
-  ansible-galaxy install -f -r requirements.yml -p roles
+  ansible-galaxy install -r requirements.yml -p roles
 
   echo '--------- Generate a Host Factory Token ------------'
   api_key=$(docker-compose exec conjur rails r "print Credentials['cucumber:user:admin'].api_key")

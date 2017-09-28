@@ -7,7 +7,7 @@ RUN apt-get update -y && \
     apt-add-repository -y ppa:brightbox/ruby-ng && \
     apt-get update -y
 
-RUN apt-get install -y ruby2.4 ruby2.4-dev python
+RUN apt-get install -y ruby2.4 ruby2.4-dev python build-essential
 
 RUN gem install bundler --no-rdoc --no-ri
 

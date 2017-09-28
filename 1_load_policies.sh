@@ -13,9 +13,6 @@ docker-compose run --rm -e CONJUR_AUTHN_API_KEY=$api_key conjur_cli \
   policy load staging /src/policy/apps/myapp.yml
 
 docker-compose run --rm -e CONJUR_AUTHN_API_KEY=$api_key conjur_cli \
-  policy load staging /src/policy/apps/myapp.yml
-
-docker-compose run --rm -e CONJUR_AUTHN_API_KEY=$api_key conjur_cli \
   policy load production /src/policy/apps/myapp.yml
 
 docker-compose run --rm -e CONJUR_AUTHN_API_KEY=$api_key conjur_cli \

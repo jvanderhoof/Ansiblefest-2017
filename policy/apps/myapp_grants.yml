@@ -2,6 +2,11 @@
 - !grant
   role: !group staging/myapp/secrets-managers
   members:
+  - !group security_ops
+
+- !grant
+  role: !group staging/myapp/secrets-managers
+  members:
   - !group team_leads
 
 - !grant
