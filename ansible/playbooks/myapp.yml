@@ -3,7 +3,7 @@
     app_environment: "{{ lookup('env', 'APP_ENV') }}"
   roles:
     - role: configure-conjur-identity
-      conjur_account: cucumber
+      conjur_account: demo-policy
       conjur_appliance_url: "http://conjur:3000"
       conjur_host_factory_token: "{{lookup('env', 'HFTOKEN')}}"
       conjur_host_name: "conjur_{{ ansible_hostname }}"

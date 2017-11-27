@@ -1,17 +1,6 @@
 - !group security_ops
-
 - !group team_leads
-
 - !group developers
-
-# Grant the less-powerful groups to the more-powerful groups
-- !grant
-  role: !group developers
-  member: !group team_leads
-
-- !grant
-  role: !group team_leads
-  member: !group security_ops
 
 - !user
   id: jason.vanderhoof
@@ -72,3 +61,12 @@
   role: !group security_ops
   members:
     - !user terrance.blake
+
+# Grant the less-powerful groups to the more-powerful groups
+- !grant
+  member: !group team_leads
+  role: !group developers
+
+- !grant
+  member: !group security_ops
+  role: !group team_leads

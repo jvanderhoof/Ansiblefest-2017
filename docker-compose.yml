@@ -5,7 +5,7 @@ services:
 
   conjur:
     image: cyberark/conjur
-    command: server -a cucumber -p 3000
+    command: server -a demo-policy -p 3000
     environment:
       CONJUR_APPLIANCE_URL: http://localhost:3000
       DATABASE_URL: postgres://postgres@pg/postgres
@@ -21,7 +21,7 @@ services:
     image: conjurinc/cli5
     environment:
       CONJUR_APPLIANCE_URL: http://conjur:3000
-      CONJUR_ACCOUNT: cucumber
+      CONJUR_ACCOUNT: demo-policy
       CONJUR_AUTHN_LOGIN: admin
     volumes:
       - ./policy:/src/policy

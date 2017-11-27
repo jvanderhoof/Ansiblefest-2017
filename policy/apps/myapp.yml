@@ -1,4 +1,3 @@
-
 - !policy
   id: myapp
   body:
@@ -24,11 +23,6 @@
   - !group secrets-users
   - !group secrets-managers
 
-  # secrets-managers has role secrets-users
-  - !grant
-    role: !group secrets-users
-    member: !group secrets-managers
-
   # secrets-users can read and execute
   - !permit
     resource: *variables
@@ -41,7 +35,12 @@
     privileges: [ update ]
     role: !group secrets-managers
 
+  # secrets-managers has role secrets-users
+  - !grant
+    member: !group secrets-managers
+    role: !group secrets-users
+
   # Application layer has the secrets-users role
   - !grant
-    role: !group secrets-users
     member: !layer
+    role: !group secrets-users
