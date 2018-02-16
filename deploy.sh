@@ -5,7 +5,8 @@ cd ansible
 env=$1
 
 if [ "$env" = "staging" ] || [ "$env" = "production" ]; then
-  ansible-galaxy install -r requirements.yml -p roles
+  echo '--------------- Reload nodes --------------'
+  ansible-galaxy install -r requirements.yml --force -p roles
 
   echo '--------- Generate a Host Factory Token ------------'
   api_key=$(docker-compose exec conjur rails r "print Credentials['demo-policy:user:admin'].api_key")
@@ -13,7 +14,7 @@ if [ "$env" = "staging" ] || [ "$env" = "production" ]; then
     hostfactory tokens create --duration-minutes=5 $env/myapp | jq -r '.[0].token')
 
   echo '--------- Run Playbook ------------'
-  HFTOKEN="$hf_token" APP_ENV="$env" ansible-playbook "playbooks/myapp.yml"
+  HFTOKEN="$hf_token" APP_ENV="$env" ansible-playbook -v "playbooks/myapp.yml"
 
 else
   echo "'$env' is not valid option.  Please choose either 'staging' or 'production'"

@@ -7,20 +7,25 @@
       conjur_appliance_url: "http://conjur:3000"
       conjur_host_factory_token: "{{lookup('env', 'HFTOKEN')}}"
       conjur_host_name: "conjur_{{ ansible_hostname }}"
+    - summon
 
   tasks:
-    - name: Find current running Application process
-      shell: pgrep ruby || true
-      register: current_application_process
+    - name: Print secrets
+      shell: "summon -p /usr/local/bin/summon-conjur --yaml 'DB_USERNAME: !var staging/myapp/database/password' bash -c 'echo $DB_USERNAME'"
 
-    - name: Stop application server (if running)
-      shell: kill -9 {{current_application_process.stdout}}
-      when: current_application_process.stdout != ''
-
-    - name: Start application with secrets from Conjur
-      summon_conjur:
-        variables:
-          DB_USERNAME: "!var {{app_environment}}/myapp/database/username"
-          DB_PASSWORD: "!var {{app_environment}}/myapp/database/password"
-          STRIPE_API_KEY: "!var {{app_environment}}/myapp/stripe/private_key"
-        command: rackup -p 4567 --host 0.0.0.0 -D
+  # tasks:
+  #   - name: Find current running Application process
+  #     shell: pgrep ruby || true
+  #     register: current_application_process
+  #
+  #   - name: Stop application server (if running)
+  #     shell: kill -9 {{current_application_process.stdout}}
+  #     when: current_application_process.stdout != ''
+  #
+  #   - name: Start application with secrets from Conjur
+  #     summon_conjur:
+  #       variables:
+  #         DB_USERNAME: "!var {{app_environment}}/myapp/database/username"
+  #         DB_PASSWORD: "!var {{app_environment}}/myapp/database/password"
+  #         STRIPE_API_KEY: "!var {{app_environment}}/myapp/stripe/private_key"
+  #       command: rackup -p 4567 --host 0.0.0.0 -D
